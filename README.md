@@ -78,23 +78,40 @@ player.weave(
 
 ![hasThread](image/README/hasThread.png)
 
-**shift 🔄:** The `shift` method is used to move a 🔑 key-value pair from one position in the Oxel-graph to another. It takes two routes as input, navigates to the end of the first route, removes the key-value pair located there, then navigates to the end of the second route and inserts the removed key-value pair at that location.
+
+**shift 🔄:** The `shift` method is used to move a 🔑 key-value pair from one position in the Oxel-graph to another.
+
+It takes two routes and an array of elements as input, navigates to the end of the first route, removes the elements located there, then navigates to the end of the second route and inserts the removed elements.
 
 ```javascript
-players.shift([player1, roles, chef], [player2, roles])
+players.shift(
+[player1, roles],
+[player2, roles], 
+[chef])
 ```
+
 
 ![shift](image/README/shift.png)
 
-In terms of game design, the `shift` method could be used to transfer roles, objects, or other properties between different parts of the game state. For example, it could be used to move a player from one scene to another, to pass an element from one character to another, or to move something from potentiality to actuality.
+
+
+
+
+The `shift` method could be used to transfer roles, objects, or other oxels between different parts of the game state. For example, it could be used to move a player from one scene to another, to pass an element from one character to another, or to move something from `potentiality` to `actuality`.
 
 **swap 🔄:** This method is used to replace a value at the given key 🔑 in a `Oxel` or `Map` structure at the end of each given route. The `swap` method will replace the key-value pair at the end of the route. The original key-value pair that was replaced is yielded back to the caller.
 
-**navigate 🧭:** This method is for navigating through the Oxel's structure based on paths or a generator object. It respects the `ruleEngine` and follows the paths provided, keeping track of `currentOxel` and `previousOxel` in the `positions` set, effectively allowing for bi-directional navigation. If it encounters the reserved keyword `"metaphor-dive"`, it looks ahead one path and goes deeper if possible. It yields an object containing `previousOxel`, `pathTaken`, and `currentOxel`.
+**navigate 🧭:** This method is for navigating through the Oxel's structure based on paths or a generator object.
 
 ```javascript
 player.navigate(scenes, roles, moves)
 ```
+
+It follows the paths provided, keeping track of `currentOxel` and `previousOxel` in the `positions` set, effectively allowing for bi-directional navigation.
+
+If it encounters the reserved keyword `"metaphor-dive"`, the following key becomes a new root point for navigation, effectively changing the "axis" of navigation.
+
+The navigate method yields an object containing `previousOxel`, `pathTaken`, and `currentOxel`.
 
 **snapshot 📸:** This method is used to create a snapshot of the current state of the `Oxel` structure up to a specified depth. It first checks if the operation is allowed by the `ruleEngine`, then creates a deep copy of the current `Oxel` up to the provided depth, and lastly freezes the copied structure to prevent mutation. The snapshot method has many uses including allowing players to capture the *state-of-play* in order to undo moves or to provide *proofs of state* 🧩📸🔐.
 
@@ -135,23 +152,23 @@ constellations.weave(
 
 A metaphor involves using a signifier from one symbolic constellation to represent something in another constellation. Metaphors can bridge gaps between disparate concepts, making unfamiliar ideas more relatable and understandable. Using Oxel instances as keys 🔑 essentially enables the system to function on multiple levels of abstraction simultaneously.
 
-Because the Oxel class extends the Map class allowing for keys and values to be of any type, keys 🔑 can themselves be Oxel instances. By permitting keys to be Oxel instances rather than simple identifiers (of type string/symbol), the system allows for metaphorical connections to be made.
+Because the Oxel class extends the Map class allowing for keys and values to be of any type, keys 🔑 can themselves be Oxel instances. By permitting keys to be Oxel instances rather than simple identifiers (of type string/symbol), Oxels allows for metaphorical connections to be made.
 
 Using Oxel instances as keys 🔑 - signifying metaphor - adds a degree of conceptual abstraction that makes this system incredibly powerful for bridging gaps between disparate systems or concepts.
 
 ## Metaphor-dive during Navigation
 
-When the navigation method encounters the "metaphor-dive" token, it performs a jump from one concept to another related concept - not by a direct link, but via an intermediate implicitly metaphorical relationship
+When the navigation method encounters the "metaphor-dive" token, it performs a jump from one concept to another related concept - not by a direct link, but via an intermediate implicitly metaphorical relationship.
 
 When the navigation method encounters the "metaphor-dive" token, it traverses into the oxel that is being used as a key 🔑 in the current oxel. Rather than traversing the “metonymic axis” of language the “metaphor-dive” allows for traversals across the “metaphoric axis” of language. A metonymic thread can then consist entirely of metaphors.
 
 This mirrors the way human cognition often works: we constantly make connections between seemingly unrelated concepts based on their shared properties or associated ideas. For example, the word 'network' has been borrowed from its original physical sense (a net-like structure 🕸️) to describe social and computer systems.
 
-With metaphor-dive, Oxel-graphs can support more sophisticated forms of reasoning, including analogical and metaphorical thinking. It can enable a form of computational creativity, where new connections between concepts are generated dynamically based on their metaphorical relationships. By combining direct (literal) and indirect (metaphorical) relationships, the Oxel-graph can evolve and expand in a more organic and dynamic way, closely mirroring the way human knowledge grows.
+With metaphor-dive, Oxel-graphs can support more sophisticated forms of reasoning, including analogical and metaphorical thinking. It can enable a form of computational creativity, where new connections between concepts are generated dynamically based on their metaphorical relationships. By understanding all conceptual relationships as `mediated` by other concepts, the Oxel-graph can evolve and expand in a more organic and dynamic way, closely mirroring the way human knowledge grows.
 
 # Interpretation
 
-The interpreter starts by looking at the root of the graph. It then traverses the graph according to the "grammar" encoded in the keys ("parameters", "functionBlock", "if-else", "condition", etc.). Each key tells the interpreter what to do next: gather parameters, evaluate a condition, and so on.
+The interpreter starts by looking at the root of the graph. It then traverses the graph according to the "grammar" encoded in the keys ("parameters", "functionBlock", "if-else", "condition", etc.). Each key can be interpreted as instructions on what to do next: gather parameters, evaluate a condition, and so on.
 
 In this sense, the keys 🔑 of each oxel, can be their own oxel-graphs that can be interpreted as *schemas* or Abstract Semantic Graphs that help the interpreter understand what each of the nodes in value-graph represents by associating them with their iteratively correspondent node in the key-graph.
 
@@ -159,17 +176,15 @@ In this sense, the keys 🔑 of each oxel, can be their own oxel-graphs that can
 
 Each of these structures might have a corresponding interpretation rule-oxel in the interpreter, effectively creating a language of oxels. This enables not just data, but also operations, control flows, and functions to be represented and manipulated as oxels themselves.
 
-While traversing through this oxel-graph, the interpreter would parse the keys 🔑 and values, interpreting them based on their role. For example, when it comes across the 'if-else' key-oxel, it knows to evaluate the 'condition' oxel in the value and branch accordingly. Similarly, 'return' key-oxel would indicate a return statement, and its value would be the return value.
+While traversing through this oxel-graph, the interpreter would parse the keys 🔑 and values, interpreting them based on their role.
 
 **Because the interpreters rule-oxels are themselves oxel-graphs that are interpreted through this same process, we obtain a meta-circular and homoiconic interface, programming language, and data structure.**
 
-The meta-circularity and homoiconicity allow for oxels to be incredibly expressive and dynamic. You can create new operations, alter existing ones, or change the control flow entirely, all within the structure of the oxels themselves. In other words, the oxels and their relationships are both the structure and the manipulation of the structure. This dynamic nature opens up a vast potential for complex, self-modifying, and self-adaptive systems.
+The meta-circularity and homoiconicity allow for oxels to be incredibly expressive and dynamic. You can create new operations, alter existing ones, or change the control flow entirely, all within the structure of the oxels themselves. In other words, the oxels and their relationships are both the structure and the manipulation of the structure.
 
 And because each Oxel forms a graph rooted at itself, oxels can represent not just objects, but entire worlds of objects, each with their own relationships and rules. This encapsulation allows for multiple "perspectives" to exist simultaneously within the same oxel structure, with each perspective being a possible interpretation of the structure.
 
-Oxels make it possible to capture not just the "what" of data, but also the "how" and "why". And because these perspectives are all interconnected within the oxel structure, changes to one perspective imminantly propagate across the reference-graph. This makes oxels a powerful tool for modeling complex systems and processes, and for understanding how different aspects of a system influence each other.
-
-But perhaps the most exciting thing about oxels is that they are not limited to representing existing concepts and relationships. Because oxels can be combined and recombined in endless ways, they are also a powerful tool for creating new concepts and discovering new relationships.
+Oxels make it possible to capture not just the "what" of data, but also the "how" and "why". And because these perspectives are all interconnected within the oxel structure, changes to one perspective imminantly propagate across the reference-graph.
 
 In a sense, oxels are a language for thought itself – a language that not only describes the world, but also helps us to reshape it. So go ahead, dive into the world of oxels and start weaving your own constellations of meaning!
 
@@ -179,19 +194,21 @@ In a sense, oxels are a language for thought itself – a language that not only
 
 ---
 
-# Imminant non-locality of meaning
+# Imminant non-locality of meaning 🌀⚡⚡🗲
 
-Since modifications of the reference structures in the graph change the meaning of references is inherently non-local since it is a "form" or "shape" of the reference patterns and pattern references that give them their meaning. Thus by changing the form we imminently altering meaning across the totality of the connected graph, because the “form” is simply different. Interestingly, this doesn’t require the use of event-propogation, the change of form is simply *imminant*.
+The Meaning of Oxels is inherently non-local since what an Oxel means is an interpretation of its "form" or "shape" - of the reference patterns (in the oxel-graph) and pattern references (in an interpretor-oxel's interpretation rule-oxels) - that give them their meaning.
 
-Indeed, in a complex system like the Oxel-based cognitive landscape, the slightest change in the reference structure can lead to significant shifts in the meaning of individual Oxels, a phenomenon known as non-locality. This can be seen as a manifestation of a foundational principle in graph theory, where nodes (or in this case, Oxels) do not hold meaning in isolation but are defined by their relationships to other nodes.
+Thus by changing the form we imminently alter the form/shape of all other oxels that reference it. This in turn changes the meaning of the oxel for an interpretor because the “form” is simply different. Interestingly, this doesn’t require the use of event-propogation, the change of form and meaning is simply *imminant*.
 
-Non-locality in reference structures is comparable to a three-dimensional puzzle or an intricately woven tapestry. Each piece or thread does not have inherent meaning on its own; rather, it contributes to the collective form, pattern, and overall image. If you alter one piece of the puzzle or one thread in the tapestry, the entire image changes, albeit subtly.
+Non-locality in reference structures is comparable to a three-dimensional puzzle or an intricately woven tapestry. Each piece or thread does not have inherent meaning on its own; rather, it contributes to the collective form, pattern, and overall image. If you alter one piece of the puzzle or one thread in the tapestry, the entire image changes, albeit perhaps subtly.
 
-In an oxel-graph (reference-graph), changing a single reference can propagate changes throughout the system, akin to a ripple effect. This is because the change doesn't just affect that particular reference; it recontextualizes all the Oxels connected to it. In this way, meaning is a dynamic, emergent property of the entire system rather than a static attribute of individual components.
+In an oxel-graph (reference-graph), changing a single reference imminantly changes meaning throughout the graph. This is because the change doesn't just affect that particular reference; it recontextualizes all the Oxels that reference it. In this way, meaning is a dynamic, emergent property of the entire system rather than a static attribute of individual components.
+
+## Metaphysical Interfacing
 
 This brings us to another aspect of non-locality: the notion of a higher-dimensional cognitive space. Just as a two-dimensional map is a projection of a three-dimensional landscape, our cognitive map is a projection of a higher-dimensional cognitive space. When we modify the reference structures, we're essentially reshaping this higher-dimensional space, leading to a new projection, a new cognitive map.
 
-In this perspective, meaning is not just the sum of individual references but the synthetic product of a unified whole. It's a dance of shapes and patterns that continually evolves, forming and reforming the tapestry of our understanding.
+In this perspective, meaning is not just the sum of individual references but the synthetic product of a unified whole. It's a dance of shapes and patterns that continually evolves, forming and reforming the tapestry of our understanding..
 
 # Meta-linguistic Assertions
 
