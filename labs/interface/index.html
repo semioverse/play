@@ -17,11 +17,10 @@
 
       // The problem is that the link (key-node) is stored in the d3 value node
       // Instead it should be stored seperately, (the keys are unique in that during visualization we do not recurse)
-      //
 
       const objRefToD3ValueNode = new Map();
       const objRefToD3KeyNode = new Map(); // this one isnt recursed over
-      const uuidToObjRef = new Map();
+      const uuidToObjRef = new Map(); // possible that this mapping is actually the idToObjRef Map
       const ObjRefToIds = new Map();
 
       function transformToD3(node, parentKey = null, num = 0) {
@@ -31,6 +30,14 @@
           const original = objRefToD3ValueNode.get(node);
           const copy = JSON.parse(JSON.stringify(original));
           copy.children = [];
+          //copy.uuid = uuid.v4();
+          //ObjRefToIds.get(node).uuids.add(copy.uuid);
+
+          // Problem is that somewhere uuid is the same but should be different every time
+          //
+
+          // Randomly create color when we create d3 node -> looking it up in the uuidToObjRef Map
+
           copy.link = parentKey
             ? {
                 id:
@@ -86,7 +93,7 @@
         if (!ObjRefToIds.has(node)) {
           ObjRefToIds.set(node, {
             id: uuid.v4(),
-            uuids: new Set([d3Node.uuid]),
+            uuids: new Set([d3Node.uuid]), // problem is perhaps also here
           });
           d3Node.id = ObjRefToIds.get(node).id;
         } else {
@@ -106,7 +113,7 @@
             // Handle non-Map instances as you see fit
           }
         }
-
+        console.log(d3Node);
         return d3Node;
       }
 
@@ -442,6 +449,7 @@
           if (centerNode) {
             resetOpacity();
             resetPosition();
+            // We would want to the "casting"
           } else {
             // get new data then re-run renderContent function here to traverse the graph!
             let obj = uuidToObjRef.get(node.data.uuid);
@@ -449,7 +457,6 @@
             objRefToD3KeyNode.clear();
             uuidToObjRef.clear();
             ObjRefToIds.clear();
-            buildCanvas();
             data = transformToD3(obj);
             renderContent();
           }

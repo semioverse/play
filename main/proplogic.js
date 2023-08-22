@@ -1,7 +1,12 @@
 import Idea from "./idea.js";
 
-export const TRUE = new Map();
-export const FALSE = new Map();
+export const SELF = new Map();
+export const OTHER = new Map();
+
+SELF.set([SELF, IS, NOT, OTHER], TRUE);
+OTHER.set([OTHER, IS, NOT, SELF], FALSE);
+
+// mutual negation -> unity both are actually one
 
 // we should be saving Maps AS WILDSYMBOLS
 
@@ -38,7 +43,6 @@ logical_connectives.set(NIMPLY, "NIMPLY");
 // logical reasoning on the soundness and completeness of modifications to these core circles
 
 // meaning transformation is non-local, and is state-modification is identical to meaning transformation propogation.
-
 // axioms for proving tautologies
 
 TRUE.set(TRUE, TRUE);

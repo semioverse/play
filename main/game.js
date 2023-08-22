@@ -1,4 +1,4 @@
-import Oxel from "./oxel.js";
+import Oxel from "./idea.js";
 
 const isEmpty = function (arr) {
   return arr.length == 0;
@@ -46,12 +46,13 @@ class EventDictionary extends Map {
   }
 }
 
-class Game extends Oxel {
+class Game extends Map {
   constructor(...args) {
     super(args);
     this._messages = [];
     this._games = [];
     this._story = [];
+    this._expressions = new Map();
     this._running = [];
     this._pending = [];
     this._lastEvent = undefined;
@@ -70,11 +71,11 @@ class Game extends Oxel {
   get story() {
     return [...this._story];
   }
-  /*
+
   get expressions() {
-    return new Set(this._expressions);
+    return new Map(this._expressions);
   }
-*/
+
   get running() {
     return [...this._running];
   }
@@ -133,9 +134,9 @@ class Game extends Oxel {
         for (const scene of expr.get(key)) {
           let sceneMap = scene[1].get("scenes");
           if (!sceneMap.expressions) {
-            sceneMap.expressions.add(expr);
+            sceneMap.expressions.set(expr);
           } else {
-            sceneMap.expressions.add(expr);
+            sceneMap.expressions.set(expr);
           }
         }
       }
@@ -149,7 +150,7 @@ class Game extends Oxel {
       lastEvent: () => this.lastEvent,
       express: async (...threads) => this.express(...threads),
       // this allows rules to access the story, the expressions, and express function, thread, weave
-      expressions: new Set(),
+      expressions: new Map(),
       gameExpressions: this.expressions,
       messages: this.messages,
       games: this.games,
@@ -164,7 +165,7 @@ class Game extends Oxel {
       name: name,
       priority: prio,
       rule: rule,
-      expressions: new Set(),
+      expressions: new Map(),
       stepIndex: 0, // Initialize step index
     };
     this._running.push(bid);
@@ -380,6 +381,18 @@ class Game extends Oxel {
   }
 
   // It would be useful to have an extractEventTypesFromRule(rule)
+  [Symbol.asyncIterator]() {
+    const entries = this.entries();
+    return {
+      next() {
+        return new Promise((resolve) => {
+          const { done, value } = entries.next();
+          // We can add some asynchronous operation here
+          resolve({ done, value });
+        });
+      },
+    };
+  }
 }
 
 export default Game;

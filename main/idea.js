@@ -1,10 +1,8 @@
 import Game from "./game.js";
-
 export default class Idea extends Map {
   constructor(identity, interpretor, ...args) {
     super(...args);
     if (identity === undefined) {
-      // its identity is its type
       this.identities = new Map();
     } else {
       this.identities = new Map().set(identity);

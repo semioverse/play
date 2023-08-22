@@ -78,7 +78,6 @@ player.weave(
 
 ![hasThread](image/README/hasThread.png)
 
-
 **shift 🔄:** The `shift` method is used to move a 🔑 key-value pair from one position in the Oxel-graph to another.
 
 It takes two routes and an array of elements as input, navigates to the end of the first route, removes the elements located there, then navigates to the end of the second route and inserts the removed elements.
@@ -90,12 +89,7 @@ players.shift(
 [chef])
 ```
 
-
 ![shift](image/README/shift.png)
-
-
-
-
 
 The `shift` method could be used to transfer roles, objects, or other oxels between different parts of the game state. For example, it could be used to move a player from one scene to another, to pass an element from one character to another, or to move something from `potentiality` to `actuality`.
 
@@ -184,14 +178,6 @@ The meta-circularity and homoiconicity allow for oxels to be incredibly expressi
 
 And because each Oxel forms a graph rooted at itself, oxels can represent not just objects, but entire worlds of objects, each with their own relationships and rules. This encapsulation allows for multiple "perspectives" to exist simultaneously within the same oxel structure, with each perspective being a possible interpretation of the structure.
 
-Oxels make it possible to capture not just the "what" of data, but also the "how" and "why". And because these perspectives are all interconnected within the oxel structure, changes to one perspective imminantly propagate across the reference-graph.
-
-In a sense, oxels are a language for thought itself – a language that not only describes the world, but also helps us to reshape it. So go ahead, dive into the world of oxels and start weaving your own constellations of meaning!
-
-# Semio-dimensional Grammars 📖🔀🧩
-
-*This section would make absurdly huge claims, and the proposed parse/fuse function is not yet satisfactorily implemented, so this section has been left out of this readme and included in this Github Issue: https://github.com/semioverse/semioverse/issues/2* 📝
-
 ---
 
 # Imminant non-locality of meaning 🌀⚡⚡🗲
@@ -204,15 +190,9 @@ Non-locality in reference structures is comparable to a three-dimensional puzzle
 
 In an oxel-graph (reference-graph), changing a single reference imminantly changes meaning throughout the graph. This is because the change doesn't just affect that particular reference; it recontextualizes all the Oxels that reference it. In this way, meaning is a dynamic, emergent property of the entire system rather than a static attribute of individual components.
 
-## Metaphysical Interfacing
-
-This brings us to another aspect of non-locality: the notion of a higher-dimensional cognitive space. Just as a two-dimensional map is a projection of a three-dimensional landscape, our cognitive map is a projection of a higher-dimensional cognitive space. When we modify the reference structures, we're essentially reshaping this higher-dimensional space, leading to a new projection, a new cognitive map.
-
-In this perspective, meaning is not just the sum of individual references but the synthetic product of a unified whole. It's a dance of shapes and patterns that continually evolves, forming and reforming the tapestry of our understanding..
-
 # Meta-linguistic Assertions
 
-"The **role** A plays in **scene** X is functionally pragmatically equivalent (scalar correlation) to the **role** B plays in **scene** Y."
+"The **role** A plays in **scene** X is recognized as functionally pragmatically equivalent (scalar correlation) to the **role** B plays in **scene** Y."
 *(This kind of statement can be explicit or implicit in parsing: see semio-dimensional grammars)*
 
 ---
