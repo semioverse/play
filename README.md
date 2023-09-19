@@ -30,11 +30,39 @@ The keyword here is ***"Play!"*** It's not just about watching or listening pass
 
 Oxels are **Organizational Elements**. The name originates from and has been heavily explored at the experimental organizations collective **[Xorg](https://xorg.how)** 🚀🧑‍🔬. While this repository only represents one branch of what Oxels can be, framing it in this way has been conducive to creative thinking 💡🎨.
 
-In the context of this program, Oxels are a transformative data structure that revolutionizes the way we compose, weave, program, and interpret networks of relationships. An Oxel is not just a node; it's a perspective, a point of view within a semio-dimensional relational graph. It can hold any data type, even other Oxels, enabling intricate and dynamic interconnections.
+In the context of this program, Oxels are a transformative data structure that revolutionizes the way we compose, weave, program, and interpret networks of associations. An Oxel is not just a node; it's a perspective, a point of view within a semio-dimensional associative/relational graph. It can hold any data type, even other Oxels, enabling intricate and dynamic interconnections.
 
 Oxels come alive with their metaphoric capabilities allowing us to make metaphorical jumps across seemingly disparate concepts. When navigating a network, Oxels can trace the metaphoric pathways that bind them. This mirrors human cognition, turning Oxels into a playground for computational creativity. Oxels are both a vessel to navigate the semioverse, as well as that which makes up its structure 🚢🧩🌐.
 
 Oxels are more than a data structure. They're a semiotic game element, a tool for modeling and navigating interconnected and unfolding concepts and relationships. Whether you're crafting a game, exploring a social network, or constructing a semio-dimensional grammar, the Oxel is your key 🔑 to unlocking new depths of understanding and connection. Oxels effectively allow us to move beyond the linearity of the literary form itself! Welcome to the Semioverse, where Oxels are the language and the landscape!
+
+*With Play! everything is a form/shape traced in reference graphs, where nodes are sets of directed associations between references to other nodes. In such a graph an interpreter itself has a form/shape.*
+
+*In this system the act of navigation allows an interpreter to trace a form and interpret its own association rules as pattern matching for traced-forms and subsequent operations to perform such as navigation, tracing, shifting, transforming, and reshaping.*
+
+At its heart, a Map in JavaScript serves as a collection of key-value pairs where the key and value can be any value, including references to other Maps.
+
+Oxels (as extensions of the javascript Map class) can be thought of as sets of directed associations (entries) between keys and values. Where keys and values tend to be references to other Oxels, this is the case recursively. Essentially Oxels are sets of associations between references to other sets of associations.
+
+Each node (Oxel) isn't just a singular entity but a meta-set of associations. It's like each city (node) on a map (graph) isn't just a point but has its own internal map (graph).
+
+**Navigation as Interpretation:**
+
+By navigating the graph, the interpreter isn't just passively observing. It is actively interpreting, tracing the forms, and drawing meanings from the patterns it identifies. It's similar to how humans understand and give meaning to abstract concepts by finding patterns and connecting them with prior knowledge.
+
+**Dynamic Operations:**
+
+As the interpreter navigates, traces, matches, and recognizes, it can perform various operations:
+
+* **Navigation** : Moving along the graph, from one node to another.
+* **Tracing** : Recognizing patterns and familiarities in forms.
+* **Shifting** : Perhaps adjusting its own internal reference state or changing the perspective from which it views a node or form.
+* **Transforming** : Actively changing or influencing the form of a node, or even its own form.
+* **Reshaping** : Rearranging or altering the reference links of a node to create a new form or pattern.
+
+**Recursive Interpretation:**
+
+Interpreters are themselves nodes/forms in the reference graph. It's possible for an interpreter to encounter another interpreter, or even to interpret itself, leading to recursive or introspective processes.
 
 ---
 
@@ -42,11 +70,13 @@ Oxels are more than a data structure. They're a semiotic game element, a tool fo
 
 The Oxel class extends JavaScript's built-in Map class thus preserving the insertion order of key-value pairs, where **keys and values can be of any type including other Oxel instances**. This creates a network of iterable sets of associations/relationships that are the key-value pairs of each Oxel.
 
+Oxels can be thought of as sets of directed associations (entries) between keys and values. Where keys and values tend to be references to other Oxels, this is the case recursively. Essentially Oxels are sets of associations between references to sets of associations.
+
 The Oxel class includes methods such as thread, weave, navigate, and swap, each functionally representing different components of meaning and facilitating the creation, navigation, and transformation of Oxel-graphs.
 
-**Constructor 🏗️:** It accepts four parameters `name`, `ruleEngine`, and `...args`. The `ruleEngine` is an optional async function that defaults to a function returning `true`. *(These parameters simply aid development and are not recommended when compared to the advantages of reference-weaving)*
+**Constructor 🏗️:** It accepts three parameters `identity`, `interpreter`, and `...args`. *(These parameters simply aid development and are not recommended when compared to the advantages of reference-weaving)*
 
-`name` is properties of the Oxel object, while `positions` is a Set object for storing references to the positions of this Oxel in other Oxels. `expressions` stores expressions about this Oxel. `ruleEngine` is a mechanism to verify each action made on the Oxel object.
+`positions` is a Set object for storing references to the positions of this Oxel in other Oxels. `expressions` stores expressions about this Oxel. `ruleEngine` is a mechanism to verify each action made on the Oxel object.
 
 ```javascript
 const player = new Oxel("scenes")
@@ -201,13 +231,13 @@ In an oxel-graph (reference-graph), changing a single reference imminantly chang
 
 **Join the [Play! (telegram)](https://t.me/semioverse) we have weekly gatherings for casting semioversal magic!** *Bring your dreams and visions and lets weave interfaces for them!* 🎭🌍🎲💬
 
-## [🚀 Sponsor Play!](https://slice.so/slicer/play)
+## [🚀 Sponsor Play!](https://mainnet.slice.so/slicer/play)
 
-Feeling generous? 🎁 Spark more fun by sponsoring Play! through the [link](https://slice.so/slicer/play) above or light up our day by sending some `ETH` love to the slicer's address: `0xd481a2d3ca2d4fa1f061e3ba10431fb4f38d92a5`
+Feeling generous? 🎁 Spark more fun by sponsoring Play! through the [link](https://mainnet.slice.so/slicer/play) above or light up our day by sending some `ETH` love to the slicer's address: `0xd481a2d3ca2d4fa1f061e3ba10431fb4f38d92a5`
 
 ## Merge to Earn 💰🔄🧩
 
-This repository uses [Merge to Earn](https://mte.slice.so/) to reward contributors with a piece 🍰 of the [Play! slicer](https://slice.so/slicer/play).
+This repository uses [Merge to Earn](https://mte.slice.so/) to reward contributors with a piece 🍰 of the [Play! slicer](https://mainnet.slice.so/slicer/play).
 
 It enables a transparent, equitable reward system for collaborative and open-source development.
 
