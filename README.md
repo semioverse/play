@@ -28,7 +28,7 @@ The keyword here is ***"Play!"*** It's not just about watching or listening pass
 
 # Oxels!
 
-Oxels are **Organizational Elements**. The name originates from and has been heavily explored at the experimental organizations collective **[Xorg](https://xorg.how)** 🚀🧑‍🔬. While this repository only represents one branch of what Oxels can be, framing it in this way has been conducive to creative thinking 💡🎨.
+Oxels are **Organizational Elements**. The name originates from the experimental organizations collective **[Xorg](https://xorg.how)** 🚀🧑‍🔬. While this repository only represents one branch of what Oxels can be, framing it in this way has been conducive to creative thinking 💡🎨.
 
 In the context of this program, Oxels are a transformative data structure that revolutionizes the way we compose, weave, program, and interpret networks of associations. An Oxel is not just a node; it's a perspective, a point of view within a semio-dimensional associative/relational graph. It can hold any data type, even other Oxels, enabling intricate and dynamic interconnections.
 
