@@ -177,9 +177,9 @@ And because each Oxel forms a graph rooted at itself, oxels can represent not ju
 
 # Imminant non-locality of meaning 🌀⚡⚡🗲
 
-The Meaning of Oxels is inherently non-local since what an Oxel means is an interpretation of its "form" or "shape" - of the reference patterns (in the oxel-graph) and pattern references (in an interpretor-oxel's interpretation rule-oxels) - that give them their meaning.
+The Meaning of Oxels is inherently non-local since what an Oxel means is an interpretation of its "form" or "shape" - of the reference patterns (in the oxel-graph) and pattern references (in an interpreter-oxel's interpretation rule-oxels) - that give them their meaning.
 
-Thus by changing the form we imminently alter the form/shape of all other oxels that reference it. This in turn changes the meaning of the oxel for an interpretor because the “form” is simply different. Interestingly, this doesn’t require the use of event-propogation, the change of form and meaning is simply *imminant*.
+Thus by changing the form we imminently alter the form/shape of all other oxels that reference it. This in turn changes the meaning of the oxel for an interpreter because the “form” is simply different. Interestingly, this doesn’t require the use of event-propogation, the change of form and meaning is simply *imminant*.
 
 Non-locality in reference structures is comparable to a three-dimensional puzzle or an intricately woven tapestry. Each piece or thread does not have inherent meaning on its own; rather, it contributes to the collective form, pattern, and overall image. If you alter one piece of the puzzle or one thread in the tapestry, the entire image changes, albeit perhaps subtly.
 
