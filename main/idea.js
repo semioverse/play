@@ -1,18 +1,25 @@
 import Game from "./game.js";
+import Interpretor from "./interpret.js";
+
+// TO DO:
+// Make sure navigate is working properly
+// Impliment key-dive on threading
+// Impliment position adding into thread
 export default class Idea extends Map {
   constructor(identity, interpretor, ...args) {
     super(...args);
+    // the identity is the shape
     if (identity === undefined) {
       this.identities = new Map();
     } else {
       this.identities = new Map().set(identity);
     }
     this.rules = new Map();
+    // this.terminals = new Set();
     // rules:
     // rule => tableau (perhaps including "applicability rules", rules about if a rule is applicable)
     // rule:
     // pattern => trigger (if match then) // potentially rewrite rules
-
     // termination oxels can be placed to indicate contradiction
 
     if (interpretor === undefined) {
@@ -25,36 +32,102 @@ export default class Idea extends Map {
       this.interpretor = interpretor;
     }
     this.positions = new Set();
-    /*
-Fresh Variables vs Wildcards:
-1. Both fresh variables and wildcards are used to represent < unknown | unspecified > values within relations and goals.
-2. Fresh variables can be bound to specific < values | terms >, while wildcards remain unbound and accept any < value | term > in their position.
-3. The use of fresh variables and wildcards enables greater flexibility and expressiveness when defining relations and goals in the logic programming system.
-*/
-    this.freshSymbols = new Map();
-    this.wildSymbols = new Set();
     //this.navIdeas = new Set();
     //this.expressions = new Map();
-    //this.terminals = new Map(); // this is for interpretation
-    //this.fusable = true; // this is like whether it can be parsed using the key
-  }
-  fresh(value) {
-    const freshSymbol = Symbol("fresh");
-    this.freshSymbols.set(freshSymbol, value); // the value is like the rewrite space, it is bound to the freshSymbol
-    return freshSymbol;
-  }
+    return new Proxy(this, {
+      get: (target, prop, receiver) => {
+        if (typeof target[prop] === "function") {
+          // If it's a method from the Map prototype
+          if (!target.validate(target, prop)) {
+            console.log(`Access to ${prop} is not allowed`);
+          }
 
-  wild() {
-    const wildSymbol = Symbol("wild");
-    this.wildSymbols.add(wildSymbol);
-    return wildSymbol;
-  }
+          return function (...args) {
+            // Bind this to the original oxel and call the method
+            return target[prop].apply(target, args);
+          };
+        }
 
-  freshRule(func) {
-    let a = this.wild(); // Generate a fresh wildcard.
-    let b = this.wild(); // Generate another fresh wildcard.
-    let c = this.wild(); // Generate a third fresh wildcard.
-    func(a, b, c); // Pass these fresh wildcards into the function that defines the rule.
+        if (!target.validate(target, prop)) {
+          console.log(`Access to ${prop} is not allowed`);
+        }
+
+        return Reflect.get(target, prop, receiver);
+      },
+      set: (target, prop, value, receiver) => {
+        if (!target.validate(target, prop, value)) {
+          console.log(`Modification of ${prop} is not allowed`);
+        }
+        return Reflect.set(target, prop, value, receiver);
+      },
+      has: (target, prop) => {
+        if (!target.validate(target, prop)) {
+          console.log(`Access to ${prop} is not allowed`);
+        }
+        return Reflect.has(target, prop);
+      },
+      deleteProperty: (target, prop) => {
+        if (!target.validate(target, prop)) {
+          console.log(`Modification of ${prop} is not allowed`);
+        }
+        return Reflect.deleteProperty(target, prop);
+      },
+      defineProperty: (target, prop, descriptor) => {
+        if (!target.validate(target, prop)) {
+          console.log(`Modification of ${prop} is not allowed`);
+        }
+        return Reflect.defineProperty(target, prop, descriptor);
+      },
+      ownKeys: (target) => {
+        if (!target.validate(target, "ownKeys")) {
+          console.log("Access to ownKeys is not allowed");
+        }
+        return Reflect.ownKeys(target);
+      },
+      getOwnPropertyDescriptor: (target, prop) => {
+        if (!target.validate(target, prop)) {
+          console.log(`Access to ${prop} is not allowed`);
+        }
+        return Reflect.getOwnPropertyDescriptor(target, prop);
+      },
+      getPrototypeOf: (target) => {
+        if (!target.validate(target, "getPrototypeOf")) {
+          console.log("Access to prototype is not allowed");
+        }
+        return Reflect.getPrototypeOf(target);
+      },
+      setPrototypeOf: (target, proto) => {
+        if (!target.validate(target, "setPrototypeOf")) {
+          console.log("Setting prototype is not allowed");
+        }
+        return Reflect.setPrototypeOf(target, proto);
+      },
+      isExtensible: (target) => {
+        if (!target.validate(target, "isExtensible")) {
+          console.log("Checking extensibility is not allowed");
+        }
+        return Reflect.isExtensible(target);
+      },
+      preventExtensions: (target) => {
+        if (!target.validate(target, "preventExtensions")) {
+          console.log("Preventing extensions is not allowed");
+        }
+        return Reflect.preventExtensions(target);
+      },
+      // Note: apply and construct traps are for function objects, and may not be applicable to the Card class, although they may be applicable to narrative generator.
+      apply: (target, thisArg, args) => {
+        if (!target.validate(target, "apply", args)) {
+          console.log("Applying is not allowed");
+        }
+        return Reflect.apply(target, thisArg, args);
+      },
+      construct: (target, args) => {
+        if (!target.validate(target, "construct", args)) {
+          console.log("Construction is not allowed");
+        }
+        return Reflect.construct(target, args);
+      },
+    });
   }
 
   //We should handle key-dives as well as backtracking navigation operations
@@ -287,8 +360,109 @@ Fresh Variables vs Wildcards:
     return permutations;
   }
 
+  async snapshot(depth) {
+    if (!(await this.validate(this, "snapshot", [depth]))) {
+      console.log(`Call to snapshot is not allowed`);
+    }
+
+    const hardened = new WeakSet();
+    const toFreeze = new Set();
+    const paths = new WeakMap();
+
+    const enqueue = (val, path = "unknown") => {
+      if (!isObject(val)) {
+        // ignore primitives
+        return;
+      }
+      const type = typeof val;
+      if (type !== "object" && type !== "function") {
+        // future proof: break until someone figures out what it should do
+        throw TypeError(`Unexpected typeof: ${type}`);
+      }
+      if (hardened.has(val) || toFreeze.has(val)) {
+        // Ignore if this is an exit, or we've already visited it
+        return;
+      }
+      toFreeze.add(val);
+      paths.set(val, path);
+    };
+
+    const freezeAndTraverse = (obj) => {
+      // Now freeze the object to ensure reactive
+      // objects such as proxies won't add properties
+      // during traversal, before they get frozen.
+      Object.freeze(obj);
+
+      const path = paths.get(obj) || "unknown";
+      const descs = Object.getOwnPropertyDescriptors(obj);
+      const proto = Object.getPrototypeOf(obj);
+      enqueue(proto, `${path}.__proto__`);
+
+      Object.getOwnPropertyNames(descs).forEach((
+        /** @type {string | symbol} */ name
+      ) => {
+        const pathname = `${path}.${String(name)}`;
+        const desc = descs[/** @type {string} */ (name)];
+        if ("value" in desc) {
+          enqueue(desc.value, `${pathname}`);
+        } else {
+          enqueue(desc.get, `${pathname}(get)`);
+          enqueue(desc.set, `${pathname}(set)`);
+        }
+      });
+    };
+
+    const dequeue = () => {
+      toFreeze.forEach(freezeAndTraverse);
+    };
+
+    const commit = () => {
+      toFreeze.forEach((value) => hardened.add(value));
+    };
+
+    const deepCopyAndFreeze = (source, depth = 0) => {
+      const destination = new Card();
+
+      if (depth < 0) {
+        console.log("Depth cannot be less than zero");
+      }
+
+      const queue = [[source, destination, 0]];
+
+      while (queue.length > 0) {
+        const [src, dest, d] = queue.shift();
+
+        if (d < depth) {
+          for (const [key, value] of src.entries()) {
+            if (value instanceof Card) {
+              const childCopy = new Card();
+              dest.set(key, childCopy);
+              queue.push([value, childCopy, d + 1]);
+              enqueue(childCopy, key);
+            } else if (value && typeof value === "object") {
+              const copiedValue = { ...value };
+              dest.set(key, copiedValue); // This will be frozen later.
+              enqueue(copiedValue, key);
+            } else {
+              dest.set(key, value);
+            }
+          }
+        }
+      }
+
+      return destination;
+    };
+
+    const copy = deepCopyAndFreeze(this, depth);
+
+    // Harden the object and its properties
+    dequeue();
+    commit();
+
+    return copy;
+  }
+
   async validate(target, prop, value = null) {
-    //this.interpretor = new Interpretor(target, prop, value);
     if (this.interpretor instanceof Function) {
       return this.interpretor(target, prop, value);
     } else if (this.interpretor instanceof Game) {
@@ -312,11 +486,3 @@ Fresh Variables vs Wildcards:
     };
   }
 }
-
-// TO DO:
-// Make sure navigate is working properly
-// Impliment key-dive on threading
-// Impliment position adding into thread
-
-// Modify Game class
-// We want to be able to proxy through

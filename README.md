@@ -16,8 +16,6 @@ Indeed for what the **movie** 🎥 itself lacked in *receptivity* and *mutabilit
 
 **Interfacing interface** 🎛️🔁🎛️ brings *mutability*, *extensiveness*, *interactivity*, *receptivity* to the architecture/frame of **interface** itself through **interface** itself. The injunction of this medium is ***Play!***
 
-*(Add note on a language as interfacing interfacing)* 📝🔄🎛️
-
 Play! as an **Interfacing interface** 🎛️🔁🎛️ takes the inherent properties of **music** 🎵, **painting** 🖼️, **movie** 🎥, **interface** 🎛️, and **social-interface** 🌐👥 to create a new and evolved media format that leverages the different aspects of each media form while overcoming their individual limitations.
 
 The keyword here is ***"Play!"*** It's not just about watching or listening passively. Instead, it's about active participation, experimentation, and discovery, much like playing a game. *With **Play!**, the interface is the playground, the medium, and the message, all at once.*
@@ -30,39 +28,20 @@ The keyword here is ***"Play!"*** It's not just about watching or listening pass
 
 Oxels are **Organizational Elements**. The name originates from the experimental organizations collective **[Xorg](https://xorg.how)** 🚀🧑‍🔬. While this repository only represents one branch of what Oxels can be, framing it in this way has been conducive to creative thinking 💡🎨.
 
-In the context of this program, Oxels are a transformative data structure that revolutionizes the way we compose, weave, program, and interpret networks of associations. An Oxel is not just a node; it's a perspective, a point of view within a semio-dimensional associative/relational graph. It can hold any data type, even other Oxels, enabling intricate and dynamic interconnections.
+In the context of this program, Oxels are a transformative data structure that revolutionizes the way we compose, weave, program, and interpret networks of associations. An Oxel is not just a node; it's a perspective, a reference-frame, a point of view within a semio-dimensional associative/relational graph. It can hold any data type, even other Oxels, enabling intricate and dynamic interconnections. Oxels are both a vessel to navigate the semioverse, as well as that which makes up its structure 🚢🧩🌐.
 
-Oxels come alive with their metaphoric capabilities allowing us to make metaphorical jumps across seemingly disparate concepts. When navigating a network, Oxels can trace the metaphoric pathways that bind them. This mirrors human cognition, turning Oxels into a playground for computational creativity. Oxels are both a vessel to navigate the semioverse, as well as that which makes up its structure 🚢🧩🌐.
+Whether you're crafting a game, exploring a social network, or constructing a semio-dimensional grammar, the Oxel is your key 🔑 to unlocking new depths of understanding and connection. Oxels effectively allow us to move beyond the linearity of the literary form itself! Welcome to the Semioverse, where Oxels are the language and the landscape!
 
-Oxels are more than a data structure. They're a semiotic game element, a tool for modeling and navigating interconnected and unfolding concepts and relationships. Whether you're crafting a game, exploring a social network, or constructing a semio-dimensional grammar, the Oxel is your key 🔑 to unlocking new depths of understanding and connection. Oxels effectively allow us to move beyond the linearity of the literary form itself! Welcome to the Semioverse, where Oxels are the language and the landscape!
+## Interpretors - An Overview
+At its heart, a Map in JavaScript serves as a mutable collection of key-value pairs where the key and value can be any value, including references to other Maps.
 
-*With Play! everything is a form/shape traced in reference graphs, where nodes are sets of directed associations between references to other nodes. In such a graph an interpreter itself has a form/shape.*
+Oxels (as extensions of the javascript Map class) can be thought of as sets of directed associations (entries) between keys and values. Where keys and values tend to be references to other Oxels, this can be the case recursively and potentially cyclically. Essentially Oxels are sets of associations between references to other sets of associations.
 
-*In this system the act of navigation allows an interpreter to trace a form and interpret its own association rules as pattern matching for traced-forms and subsequent operations to perform such as navigation, tracing, shifting, transforming, and reshaping.*
+Interpretors (as extensions of the Oxel class) are also forms/shapes/patterns of sets of directed associations between reference to other Oxels. Interpretors can then be understood as having different forms of interpretation, or different interpretation patterns.
 
-At its heart, a Map in JavaScript serves as a collection of key-value pairs where the key and value can be any value, including references to other Maps.
+*Generally speaking, in order to interpret, an interpreter traces a pattern, pattern-matches it against its own keys, and recursively interprets its own associated values as operations to perform such as navigation, tracing, shifting, and rewriting.*
 
-Oxels (as extensions of the javascript Map class) can be thought of as sets of directed associations (entries) between keys and values. Where keys and values tend to be references to other Oxels, this is the case recursively. Essentially Oxels are sets of associations between references to other sets of associations.
-
-Each node (Oxel) isn't just a singular entity but a meta-set of associations. It's like each city (node) on a map (graph) isn't just a point but has its own internal map (graph).
-
-**Navigation as Interpretation:**
-
-By navigating the graph, the interpreter isn't just passively observing. It is actively interpreting, tracing the forms, and drawing meanings from the patterns it identifies. It's similar to how humans understand and give meaning to abstract concepts by finding patterns and connecting them with prior knowledge.
-
-**Dynamic Operations:**
-
-As the interpreter navigates, traces, matches, and recognizes, it can perform various operations:
-
-* **Navigation** : Moving along the graph, from one node to another.
-* **Tracing** : Recognizing patterns and familiarities in forms.
-* **Shifting** : Perhaps adjusting its own internal reference state or changing the perspective from which it views a node or form.
-* **Transforming** : Actively changing or influencing the form of a node, or even its own form.
-* **Reshaping** : Rearranging or altering the reference links of a node to create a new form or pattern.
-
-**Recursive Interpretation:**
-
-Interpreters are themselves nodes/forms in the reference graph. It's possible for an interpreter to encounter another interpreter, or even to interpret itself, leading to recursive or introspective processes.
+Since Interpreters are themselves nodes/forms in reference graphs, it's possible for an interpreter to encounter other interpreters, or even to interpret itself, leading to recursive, and introspective processes.
 
 ---
 
@@ -76,7 +55,7 @@ The Oxel class includes methods such as thread, weave, navigate, and swap, each 
 
 **Constructor 🏗️:** It accepts three parameters `identity`, `interpreter`, and `...args`. *(These parameters simply aid development and are not recommended when compared to the advantages of reference-weaving)*
 
-`positions` is a Set object for storing references to the positions of this Oxel in other Oxels. `expressions` stores expressions about this Oxel. `ruleEngine` is a mechanism to verify each action made on the Oxel object.
+`positions` is a Set object for storing references to the positions of this Oxel in other Oxels.  `interpreter` is a mechanism to verify each action made on the Oxel object.
 
 ```javascript
 const player = new Oxel("scenes")
@@ -95,13 +74,6 @@ player.thread(scenes, roles, moves)
 
 **weave 🕸️:** The weave method utilizes the thread method to weave several threads, much like weaving a tapestry.
 
-```javascript
-player.weave(
-[scenes, roles, moves]
-[scenes, roles, moves]
-[scenes, roles, moves])
-```
-
 ![1688826697642](image/README/weave.png)
 
 **hasThread 🧵:** This method can help to check if a particular thread exists within an Oxel, and it could be used for checking conditions in gameplay rules.
@@ -111,13 +83,6 @@ player.weave(
 **shift 🔄:** The `shift` method is used to move a 🔑 key-value pair from one position in the Oxel-graph to another.
 
 It takes two routes and an array of elements as input, navigates to the end of the first route, removes the elements located there, then navigates to the end of the second route and inserts the removed elements.
-
-```javascript
-players.shift(
-[player1, roles],
-[player2, roles], 
-[chef])
-```
 
 ![shift](image/README/shift.png)
 
@@ -137,7 +102,7 @@ If it encounters the reserved keyword `"metaphor-dive"`, the following key becom
 
 The navigate method yields an object containing `previousOxel`, `pathTaken`, and `currentOxel`.
 
-**snapshot 📸:** This method is used to create a snapshot of the current state of the `Oxel` structure up to a specified depth. It first checks if the operation is allowed by the `ruleEngine`, then creates a deep copy of the current `Oxel` up to the provided depth, and lastly freezes the copied structure to prevent mutation. The snapshot method has many uses including allowing players to capture the *state-of-play* in order to undo moves or to provide *proofs of state* 🧩📸🔐.
+**snapshot 📸:** This method is used to create a snapshot of the current state of the `Oxel` structure up to a specified depth. It first checks if the operation is allowed by the `interpreter`, then creates a deep copy of the current `Oxel` up to the provided depth, and lastly freezes the copied structure to prevent mutation. The snapshot method has many uses including allowing players to capture the *state-of-play* in order to undo moves or to provide *proofs of state* 🧩📸🔐.
 
 What emerges from the methods introduced so far is a dynamic system of meaning where individual units (Oxels) are linked through paths (thread 🧵), creating a network (weave 🕸️) that can be explored (navigate 🧭) and transformed (shift/swap 🔄).
 
@@ -145,7 +110,7 @@ What emerges from the methods introduced so far is a dynamic system of meaning w
 
 # Oxels as perspectives 👁️🧩
 
-**Interestingly the structure created by threading/weaving oxels embodies the concept of perception 👁️.** For example, imagine constructing oxels to symbolize all individuals populating your life-world, yourself included 👥🌍🧩.
+**Interestingly the structure created by threading/weaving oxels embodies the concept of perception 👁️ (or reference-frames).** For example, imagine constructing oxels to symbolize all individuals populating your life-world, yourself included 👥🌍🧩.
 
 You would embark on a process of threading from yourself to others:
 
@@ -194,15 +159,15 @@ With metaphor-dive, Oxel-graphs can support more sophisticated forms of reasonin
 
 The interpreter starts by looking at the root of the graph. It then traverses the graph according to the "grammar" encoded in the keys ("parameters", "functionBlock", "if-else", "condition", etc.). Each key can be interpreted as instructions on what to do next: gather parameters, evaluate a condition, and so on.
 
-In this sense, the keys 🔑 of each oxel, can be their own oxel-graphs that can be interpreted as *schemas* or Abstract Semantic Graphs that help the interpreter understand what each of the nodes in value-graph represents by associating them with their iteratively correspondent node in the key-graph.
+In this sense, the keys 🔑 of each oxel can be oxel-graphs themselves, which can be interpreted as *schemas* or Abstract Semantic Graphs that help an interpreter understand what each of the nodes in value-graph represents by associating them with their iteratively correspondent node in the key-graph.
 
 ![interpreter](image/README/interpreter.png)
 
-Each of these structures might have a corresponding interpretation rule-oxel in the interpreter, effectively creating a language of oxels. This enables not just data, but also operations, control flows, and functions to be represented and manipulated as oxels themselves.
+Each of these structures might have a corresponding interpretation rule-oxel in an interpreter, effectively creating a language of oxels. This enables not just data, but also operations, control flows, and functions to be represented and manipulated as oxels themselves.
 
-While traversing through this oxel-graph, the interpreter would parse the keys 🔑 and values, interpreting them based on their role.
+While traversing through this oxel-graph, an interpreter would parse the keys 🔑 and values, interpreting them based on their role.
 
-**Because the interpreters rule-oxels are themselves oxel-graphs that are interpreted through this same process, we obtain a meta-circular and homoiconic interface, programming language, and data structure.**
+**Because an interpreter's rule-oxels are themselves oxel-graphs that are interpreted through this same process, we obtain a meta-circular and homoiconic interface, programming language, and data structure.**
 
 The meta-circularity and homoiconicity allow for oxels to be incredibly expressive and dynamic. You can create new operations, alter existing ones, or change the control flow entirely, all within the structure of the oxels themselves. In other words, the oxels and their relationships are both the structure and the manipulation of the structure.
 
