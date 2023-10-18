@@ -1,11 +1,4 @@
-import Idea from "./idea.js";
-
-export const SELF = new Map();
-export const OTHER = new Map();
-
-SELF.set([SELF, IS, NOT, OTHER], TRUE);
-OTHER.set([OTHER, IS, NOT, SELF], FALSE);
-
+//import Idea from "./idea.js";
 // mutual negation -> unity both are actually one
 
 // we should be saving Maps AS WILDSYMBOLS
@@ -23,27 +16,14 @@ export const NAND = new Map(); // not both	: alternative denial
 export const NOR = new Map(); // neither...nor	: joint denial
 export const NIMPLY = new Map(); //but not	: material nonimplication
 
-export const logical_connectives = new Map();
-logical_connectives.set(TRUE, "TRUE");
-logical_connectives.set(FALSE, "FALSE");
-logical_connectives.set(ANY, "ANY");
-logical_connectives.set(AND, "AND");
-logical_connectives.set(ALL, "ALL");
-logical_connectives.set(NOT, "NOT");
-logical_connectives.set(OR, "OR");
-logical_connectives.set(NOR, "NOR");
-logical_connectives.set(NAND, "NAND");
-logical_connectives.set(XOR, "XOR");
-logical_connectives.set(XNOR, "XNOR");
-logical_connectives.set(IMPLY, "IMPLY");
-logical_connectives.set(NIMPLY, "NIMPLY");
-
 // Can we understand these as being wild-card symbols? patched into a structure?
 
 // logical reasoning on the soundness and completeness of modifications to these core circles
 
 // meaning transformation is non-local, and is state-modification is identical to meaning transformation propogation.
 // axioms for proving tautologies
+export const TRUE = new Map(); //but not	: material nonimplication
+export const FALSE = new Map(); //but not	: material nonimplication
 
 TRUE.set(TRUE, TRUE);
 TRUE.set(FALSE, TRUE);
@@ -113,6 +93,8 @@ NIMPLY.set([TRUE, NIMPLY, FALSE], TRUE);
 NIMPLY.set([FALSE, NIMPLY, TRUE], FALSE);
 NIMPLY.set([FALSE, NIMPLY, FALSE], FALSE);
 
+console.log(TRUE);
+
 export const rules = new Idea();
 
 // Weave the laws of Identity
@@ -174,5 +156,4 @@ rules.freshRule((a, b, c) => {
   rules.set([a, OR, [NOT, a]], TRUE);
 });
 
-//console.log(logical_connectives);
-//console.log(rules);
+console.log(rules);

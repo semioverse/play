@@ -6,13 +6,13 @@ import Interpretor from "./interpret.js";
 // Impliment key-dive on threading
 // Impliment position adding into thread
 export default class Idea extends Map {
-  constructor(identity, interpretor, ...args) {
+  constructor(name, interpretor, ...args) {
     super(...args);
     // the identity is the shape
-    if (identity === undefined) {
-      this.identities = new Map();
+    if (name === undefined) {
+      this.names = new Map();
     } else {
-      this.identities = new Map().set(identity);
+      this.names = new Map().set(name);
     }
     this.rules = new Map();
     // this.terminals = new Set();
@@ -137,6 +137,7 @@ export default class Idea extends Map {
     }
     let oxel = this;
     const story = []; //so that backtracking during threading is possible
+    // could serve as a history or breadcrumb trail, enabling backtracking or even time-travel functionalities within the Oxel graph.
 
     for await (const path of paths) {
       if (oxel instanceof Map) {

@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-import Oxel from "./oxel.js";
+import Oxel from "./idea.js";
 
 export class ElementMap extends Map {
   constructor() {
@@ -12,25 +12,6 @@ export class ElementMap extends Map {
     svgElement.attr("id", id);
     this.set(id, associatedObject);
     return id;
-  }
-
-  // Retrieve the object associated with a given SVG element
-  getElementObject(svgElementId) {
-    const obj = this.get(svgElementId);
-    if (!obj) {
-      console.log(`No object associated with SVG element ${svgElementId}`);
-    }
-    return obj;
-  }
-
-  // Update the object associated with a given SVG element
-  updateElementObject(svgElementId, newObject) {
-    if (!this.has(svgElementId)) {
-      console.log(
-        `No object associated with SVG element ${svgElementId} to update`
-      );
-    }
-    this.set(svgElementId, newObject);
   }
 }
 

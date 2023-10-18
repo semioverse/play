@@ -157,7 +157,7 @@ With metaphor-dive, Oxel-graphs can support more sophisticated forms of reasonin
 
 # Interpretation
 
-The interpreter starts by looking at the root of the graph. It then traverses the graph according to the "grammar" encoded in the keys ("parameters", "functionBlock", "if-else", "condition", etc.). Each key can be interpreted as instructions on what to do next: gather parameters, evaluate a condition, and so on.
+The interpreter starts by looking at the root of the graph. It then traverses and traces the graph according to its interpretation of the "grammar" encoded in the keys ("parameters", "functionBlock", "if-else", "condition", etc.). Each key can be interpreted as instructions on what to do next: gather parameters, evaluate a condition, and so on.
 
 In this sense, the keys 🔑 of each oxel can be oxel-graphs themselves, which can be interpreted as *schemas* or Abstract Semantic Graphs that help an interpreter understand what each of the nodes in value-graph represents by associating them with their iteratively correspondent node in the key-graph.
 
