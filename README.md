@@ -33,6 +33,7 @@ In the context of this program, Oxels are a transformative data structure that r
 Whether you're crafting a game, exploring a social network, or constructing a semio-dimensional grammar, the Oxel is your key 🔑 to unlocking new depths of understanding and connection. Oxels effectively allow us to move beyond the linearity of the literary form itself! Welcome to the Semioverse, where Oxels are the language and the landscape!
 
 ## Interpreters - An Overview
+
 At its heart, a Map in JavaScript serves as a mutable collection of key-value pairs where the key and value can be any value, including references to other Maps.
 
 Oxels (as extensions of the javascript Map class) can be thought of as sets of directed associations (entries) between keys and values. Where keys and values tend to be references to other Oxels, this can be the case recursively and potentially cyclically. Essentially Oxels are sets of associations between references to other sets of associations.
@@ -42,6 +43,8 @@ Interpretors (as extensions of the Oxel class) are also forms/shapes/patterns of
 *Generally speaking, in order to interpret, an interpreter traces a pattern, pattern-matches it against its own keys, and recursively interprets its own associated values as operations to perform such as navigation, tracing, shifting, and rewriting.*
 
 Since Interpreters are themselves nodes/forms in reference graphs, it's possible for an interpreter to encounter other interpreters, or even to interpret itself, leading to recursive, and introspective processes.
+
+// Add note on sets of associations as symbol tables
 
 ---
 
